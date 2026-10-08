@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Login | SCAD Clubs</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .login-page {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: #f8f5ef;
+        }
+
+        .login-visual {
+            background: #641f2b;
+            color: white;
+            padding: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .login-visual h1 {
+            font-family: "Playfair Display", serif;
+            font-size: 60px;
+            line-height: 1.05;
+            margin: 20px 0;
+        }
+
+        .login-visual p {
+            max-width: 480px;
+            color: #eadbd8;
+        }
+
+        .login-form-area {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 430px;
+            background: white;
+            padding: 45px;
+            border: 1px solid #e5ddd3;
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(40,20,20,.08);
+        }
+
+        .login-card h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 35px;
+            color: #252326;
+        }
+
+        .login-card > p {
+            color: #777176;
+            margin: 7px 0 30px;
+            font-size: 14px;
+        }
+
+        .field {
+            margin-bottom: 20px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+
+        .field input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ded6cb;
+            border-radius: 7px;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .field input:focus {
+            border-color: #641f2b;
+        }
+
+        .login-button {
+            width: 100%;
+            border: none;
+            padding: 15px;
+            border-radius: 7px;
+            background: #641f2b;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .login-button:hover {
+            background: #42141d;
+        }
+
+        .login-links {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 13px;
+        }
+
+        .login-links a {
+            color: #641f2b;
+            font-weight: 600;
+        }
+
+        .demo {
+            margin-top: 25px;
+            padding: 12px;
+            background: #f5efe7;
+            border-radius: 7px;
+            font-size: 11px;
+            color: #777;
+        }
+
+        @media(max-width:800px) {
+            .login-page {
+                grid-template-columns: 1fr;
+            }
+
+            .login-visual {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="login-page">
+
+    <div class="login-visual">
+
+        <span class="eyebrow">SCAD STUDENT PORTAL</span>
+
+        <h1>
+            Your campus.<br>
+            Your clubs.<br>
+            Your journey.
+        </h1>
+
+        <p>
+            Discover clubs, participate in events,
+            register for activities and stay connected
+            with the SCAD student community.
+        </p>
+
+    </div>
+
+
+    <div class="login-form-area">
+
+        <div class="login-card">
+
+            <h2>Student Login</h2>
+
+            <p>Sign in to access your SCAD Club Portal.</p>
+
+            <form onsubmit="studentLogin(event)">
+
+                <div class="field">
+                    <label>Student Username</label>
+                    <input id="studentUsername" type="text" placeholder="Enter username" required>
+                </div>
+
+                <div class="field">
+                    <label>Password</label>
+                    <input id="studentPassword" type="password" placeholder="Enter password" required>
+                </div>
+
+                <button class="login-button" type="submit">
+                    Login to Student Portal →
+                </button>
+
+            </form>
+
+            <div class="demo">
+                Demo Login: <b>student</b> / <b>student123</b>
+            </div>
+
+            <div class="login-links">
+                <a href="admin-login.html">Admin Login</a>
+                &nbsp; • &nbsp;
+                <a href="index.html">Back to Website</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

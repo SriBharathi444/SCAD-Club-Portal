@@ -1,0 +1,1736 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Admin Dashboard | SCAD College</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* =========================================
+   BASE
+========================================= */
+
+body {
+    margin: 0;
+    background: #f5f1eb;
+    color: #252326;
+    font-family: Arial, sans-serif;
+}
+
+.admin-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.admin-sidebar {
+    width: 250px;
+    background: #211d1e;
+    color: white;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    padding: 25px 18px;
+    box-sizing: border-box;
+    z-index: 100;
+}
+
+.admin-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 35px;
+    padding: 10px;
+}
+
+.admin-brand img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+}
+
+.admin-brand h3 {
+    font-family: "Playfair Display", serif;
+    margin: 0;
+}
+
+.admin-brand span {
+    display: block;
+    font-size: 9px;
+    color: #aaa;
+    margin-top: 3px;
+}
+
+.admin-nav {
+    display: block;
+    padding: 13px 15px;
+    color: #c6c0bd;
+    font-size: 13px;
+    border-radius: 7px;
+    margin: 4px 0;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.admin-nav:hover,
+.admin-nav.active {
+    background: #641f2b;
+    color: white;
+}
+
+.admin-logout {
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    bottom: 25px;
+}
+
+/* =========================================
+   MAIN
+========================================= */
+
+.admin-main {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    padding: 35px;
+    box-sizing: border-box;
+}
+
+/* =========================================
+   TOP
+========================================= */
+
+.admin-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.admin-top h1 {
+    font-family: "Playfair Display", serif;
+    font-size: 35px;
+    margin: 5px 0 0;
+}
+
+.eyebrow {
+    color: #b18a50;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.admin-profile {
+    background: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 1px solid #e1d9d0;
+    font-size: 13px;
+}
+
+/* =========================================
+   WELCOME
+========================================= */
+
+.admin-welcome {
+    background: #641f2b;
+    color: white;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+.admin-welcome h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 34px;
+    margin: 0 0 8px;
+}
+
+.admin-welcome p {
+    color: #eadbd8;
+}
+
+/* =========================================
+   STATS
+========================================= */
+
+.admin-stats {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 18px;
+    margin-bottom: 30px;
+}
+
+.admin-stat {
+    background: white;
+    padding: 22px;
+    border: 1px solid #e1d9d0;
+    border-radius: 10px;
+}
+
+.admin-stat strong {
+    display: block;
+    color: #641f2b;
+    font-family: "Playfair Display", serif;
+    font-size: 30px;
+}
+
+.admin-stat span {
+    font-size: 12px;
+    color: #777;
+}
+
+/* =========================================
+   SEARCH STUDENT
+========================================= */
+
+.student-search-card {
+    background: white;
+    border: 1px solid #e1d9d0;
+    border-radius: 14px;
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+.student-search-card h2 {
+    font-family: "Playfair Display", serif;
+    color: #42141d;
+    margin-top: 0;
+}
+
+.student-search-card p {
+    color: #777;
+    font-size: 13px;
+}
+
+.search-box {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.search-box input {
+    flex: 1;
+    padding: 13px 15px;
+    border: 1px solid #ddd3c8;
+    border-radius: 7px;
+    outline: none;
+    font-size: 13px;
+}
+
+.search-box input:focus {
+    border-color: #641f2b;
+}
+
+.admin-button {
+    background: #641f2b;
+    color: white;
+    border: none;
+    padding: 11px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.admin-button:hover {
+    background: #42141d;
+}
+
+.admin-button.secondary {
+    background: #eee7de;
+    color: #641f2b;
+}
+
+/* =========================================
+   STUDENT RESULT
+========================================= */
+
+.student-result {
+    display: none;
+    background: white;
+    border: 1px solid #e1d9d0;
+    border-radius: 14px;
+    padding: 28px;
+    margin-bottom: 30px;
+}
+
+.student-result.show {
+    display: block;
+}
+
+.student-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid #eee7df;
+    padding-bottom: 22px;
+    margin-bottom: 22px;
+}
+
+.student-avatar {
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    background: #641f2b;
+    border: 4px solid #b18a50;
+    color: white;
+    display: grid;
+    place-items: center;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.student-header h2 {
+    margin: 0 0 5px;
+    color: #42141d;
+    font-family: "Playfair Display", serif;
+}
+
+.student-header p {
+    margin: 3px 0;
+    color: #777;
+    font-size: 12px;
+}
+
+.student-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 14px;
+    margin-bottom: 25px;
+}
+
+.student-detail {
+    background: #f8f5ef;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.student-detail span {
+    display: block;
+    color: #888;
+    font-size: 10px;
+    margin-bottom: 5px;
+}
+
+.student-detail strong {
+    color: #333;
+    font-size: 12px;
+}
+
+/* =========================================
+   ACTIVITY CARDS
+========================================= */
+
+.activity-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.activity-card {
+    background: #f8f5ef;
+    padding: 18px;
+    border-radius: 9px;
+}
+
+.activity-card strong {
+    display: block;
+    font-size: 23px;
+    color: #641f2b;
+    font-family: "Playfair Display", serif;
+}
+
+.activity-card span {
+    color: #777;
+    font-size: 11px;
+}
+
+/* =========================================
+   PROFILE SECTIONS
+========================================= */
+
+.admin-profile-section {
+    margin-top: 25px;
+}
+
+.admin-profile-section h3 {
+    font-family: "Playfair Display", serif;
+    color: #42141d;
+    margin-bottom: 15px;
+}
+
+.data-list {
+    display: grid;
+    gap: 10px;
+}
+
+.data-item {
+    background: #f8f5ef;
+    padding: 14px 16px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.data-item strong {
+    color: #42141d;
+    font-size: 12px;
+}
+
+.data-item span {
+    color: #777;
+    font-size: 11px;
+}
+
+/* =========================================
+   CERTIFICATE
+========================================= */
+
+.certificate-admin-item {
+    background: #f8f5ef;
+    padding: 16px;
+    border-radius: 9px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.certificate-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.certificate-icon {
+    width: 40px;
+    height: 40px;
+    background: #641f2b;
+    color: white;
+    border-radius: 7px;
+    display: grid;
+    place-items: center;
+}
+
+.certificate-left h4 {
+    margin: 0 0 4px;
+    color: #42141d;
+}
+
+.certificate-left span {
+    color: #777;
+    font-size: 10px;
+}
+
+.status {
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.status.pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status.verified {
+    background: #e5f4e9;
+    color: #26703a;
+}
+
+.verify-btn {
+    background: #641f2b;
+    color: white;
+    border: none;
+    padding: 7px 11px;
+    border-radius: 5px;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.verify-btn:hover {
+    background: #42141d;
+}
+
+/* =========================================
+   ADMIN GRID
+========================================= */
+
+.admin-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.admin-card {
+    background: white;
+    border: 1px solid #e1d9d0;
+    border-radius: 10px;
+    padding: 25px;
+}
+
+.admin-card h2 {
+    font-family: "Playfair Display", serif;
+    margin-bottom: 15px;
+    color: #42141d;
+}
+
+.admin-card p {
+    color: #777;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.management-list {
+    margin-top: 18px;
+}
+
+.management-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #eee7df;
+    padding: 14px 0;
+}
+
+.management-item strong {
+    font-size: 13px;
+}
+
+.management-item span {
+    font-size: 11px;
+    color: #777;
+}
+
+/* =========================================
+   MODAL
+========================================= */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-box {
+    background: #f8f5ef;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 14px;
+    padding: 30px;
+    position: relative;
+}
+
+.modal-box h2 {
+    font-family: "Playfair Display", serif;
+    color: #42141d;
+}
+
+.close-modal {
+    position: absolute;
+    right: 18px;
+    top: 15px;
+    border: none;
+    background: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #42141d;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media(max-width:1100px) {
+
+    .admin-stats {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .student-detail-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .activity-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media(max-width:950px) {
+
+    .admin-sidebar {
+        width: 75px;
+    }
+
+    .admin-brand div,
+    .admin-nav span {
+        display: none;
+    }
+
+    .admin-main {
+        margin-left: 75px;
+        width: calc(100% - 75px);
+    }
+
+    .admin-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width:650px) {
+
+    .admin-main {
+        padding: 20px;
+    }
+
+    .admin-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .admin-stats,
+    .student-detail-grid,
+    .activity-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .search-box {
+        flex-direction: column;
+    }
+
+    .student-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .certificate-admin-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="admin-layout">
+
+
+<!-- =========================================
+     SIDEBAR
+========================================= -->
+
+<aside class="admin-sidebar">
+
+    <div class="admin-brand">
+
+        <img src="images/scad-logo.jpeg" alt="SCAD">
+
+        <div>
+            <h3>SCAD Clubs</h3>
+            <span>ADMIN PORTAL</span>
+        </div>
+
+    </div>
+
+
+    <a href="#dashboard" class="admin-nav active">
+        📊 <span>Dashboard</span>
+    </a>
+
+    <a href="#clubs" class="admin-nav">
+        🎯 <span>Club Management</span>
+    </a>
+
+    <a href="#events" class="admin-nav">
+        📅 <span>Event Management</span>
+    </a>
+
+    <a href="#students" class="admin-nav">
+        👥 <span>Students</span>
+    </a>
+
+    <a href="#registrations" class="admin-nav">
+        📝 <span>Registrations</span>
+    </a>
+
+    <a href="#announcements" class="admin-nav">
+        📢 <span>Announcements</span>
+    </a>
+
+    <a href="#gallery" class="admin-nav">
+        🖼️ <span>Posters & Gallery</span>
+    </a>
+
+
+    <a href="index.html"
+       class="admin-nav admin-logout">
+        🚪 <span>Logout</span>
+    </a>
+
+</aside>
+
+
+<!-- =========================================
+     MAIN
+========================================= -->
+
+<main class="admin-main"
+      id="dashboard">
+
+
+<!-- TOP BAR -->
+
+<div class="admin-top">
+
+    <div>
+
+        <span class="eyebrow">
+            SCAD ADMIN PORTAL
+        </span>
+
+        <h1>
+            Dashboard
+        </h1>
+
+    </div>
+
+
+    <div class="admin-profile">
+        👤 Administrator
+    </div>
+
+</div>
+
+
+<!-- WELCOME -->
+
+<section class="admin-welcome">
+
+    <h2>
+        Good Morning, Admin
+    </h2>
+
+    <p>
+        Manage clubs, events, students,
+        registrations and student achievements
+        from one central portal.
+    </p>
+
+</section>
+
+
+<!-- =========================================
+     STATS
+========================================= -->
+
+<section class="admin-stats">
+
+    <div class="admin-stat">
+
+        <strong>
+            24
+        </strong>
+
+        <span>
+            Total Clubs
+        </span>
+
+    </div>
+
+
+    <div class="admin-stat">
+
+        <strong>
+            150+
+        </strong>
+
+        <span>
+            Registered Students
+        </span>
+
+    </div>
+
+
+    <div class="admin-stat">
+
+        <strong>
+            18
+        </strong>
+
+        <span>
+            Total Events
+        </span>
+
+    </div>
+
+
+    <div class="admin-stat">
+
+        <strong id="adminRegistrationCount">
+            100+
+        </strong>
+
+        <span>
+            Event Registrations
+        </span>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     STUDENT SEARCH
+========================================= -->
+
+<section class="student-search-card"
+         id="students">
+
+    <h2>
+        Student Management
+    </h2>
+
+    <p>
+        Search for a student and view their complete
+        academic, club, event, achievement and
+        certificate information.
+    </p>
+
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="studentSearch"
+            placeholder="Search by student name or register number..."
+        >
+
+        <button
+            class="admin-button"
+            onclick="searchStudent()">
+            🔍 Search Student
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     STUDENT PROFILE RESULT
+========================================= -->
+
+<section class="student-result"
+         id="studentResult">
+
+
+    <div class="student-header">
+
+        <div class="student-avatar">
+            SB
+        </div>
+
+
+        <div>
+
+            <h2>
+                Sri Bharathi
+            </h2>
+
+            <p>
+                Student Profile
+            </p>
+
+            <p>
+                B.E. Computer Science and Engineering
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ACADEMIC DETAILS -->
+
+    <div class="student-detail-grid">
+
+        <div class="student-detail">
+
+            <span>
+                Register Number
+            </span>
+
+            <strong>
+                23CSE001
+            </strong>
+
+        </div>
+
+
+        <div class="student-detail">
+
+            <span>
+                Department
+            </span>
+
+            <strong>
+                Computer Science & Engineering
+            </strong>
+
+        </div>
+
+
+        <div class="student-detail">
+
+            <span>
+                Year
+            </span>
+
+            <strong>
+                II Year
+            </strong>
+
+        </div>
+
+
+        <div class="student-detail">
+
+            <span>
+                Section
+            </span>
+
+            <strong>
+                C
+            </strong>
+
+        </div>
+
+
+        <div class="student-detail">
+
+            <span>
+                Email
+            </span>
+
+            <strong>
+                student@scad.edu.in
+            </strong>
+
+        </div>
+
+
+        <div class="student-detail">
+
+            <span>
+                Status
+            </span>
+
+            <strong>
+                Active Student
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- ACTIVITY SUMMARY -->
+
+    <div class="activity-grid">
+
+        <div class="activity-card">
+
+            <strong>
+                2
+            </strong>
+
+            <span>
+                Joined Clubs
+            </span>
+
+        </div>
+
+
+        <div class="activity-card">
+
+            <strong>
+                3
+            </strong>
+
+            <span>
+                Events Participated
+            </span>
+
+        </div>
+
+
+        <div class="activity-card">
+
+            <strong>
+                3
+            </strong>
+
+            <span>
+                Achievements
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- CLUBS -->
+
+    <div class="admin-profile-section">
+
+        <h3>
+            🎯 Joined Clubs
+        </h3>
+
+
+        <div class="data-list">
+
+            <div class="data-item">
+
+                <strong>
+                    App Development Club
+                </strong>
+
+                <span>
+                    Active Member
+                </span>
+
+            </div>
+
+
+            <div class="data-item">
+
+                <strong>
+                    Coding Club
+                </strong>
+
+                <span>
+                    Active Member
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- EVENTS -->
+
+    <div class="admin-profile-section">
+
+        <h3>
+            📅 Participated Events
+        </h3>
+
+
+        <div class="data-list">
+
+            <div class="data-item">
+
+                <strong>
+                    Cricket Tournament
+                </strong>
+
+                <span>
+                    Participated
+                </span>
+
+            </div>
+
+
+            <div class="data-item">
+
+                <strong>
+                    Dream Verse
+                </strong>
+
+                <span>
+                    Participated
+                </span>
+
+            </div>
+
+
+            <div class="data-item">
+
+                <strong>
+                    The Number Crunches
+                </strong>
+
+                <span>
+                    Registered
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ACHIEVEMENTS -->
+
+    <div class="admin-profile-section">
+
+        <h3>
+            🏆 Achievements
+        </h3>
+
+
+        <div class="data-list">
+
+            <div class="data-item">
+
+                <strong>
+                    Technical Event Participation
+                </strong>
+
+                <span>
+                    College Activity
+                </span>
+
+            </div>
+
+
+            <div class="data-item">
+
+                <strong>
+                    App Development Club Contribution
+                </strong>
+
+                <span>
+                    Verified
+                </span>
+
+            </div>
+
+
+            <div class="data-item">
+
+                <strong>
+                    Student Project Contribution
+                </strong>
+
+                <span>
+                    Verified
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- CERTIFICATES -->
+
+    <div class="admin-profile-section">
+
+        <h3>
+            📄 Uploaded Certificates
+        </h3>
+
+
+        <div id="certificateAdminList">
+
+
+            <div class="certificate-admin-item"
+                 id="certificate1">
+
+                <div class="certificate-left">
+
+                    <div class="certificate-icon">
+                        📄
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Cloud Computing Workshop
+                        </h4>
+
+                        <span>
+                            Uploaded by Student
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <span class="status pending"
+                          id="status1">
+                        Pending Verification
+                    </span>
+
+                    <button
+                        class="verify-btn"
+                        onclick="verifyCertificate('status1', this)">
+                        Verify
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="certificate-admin-item">
+
+                <div class="certificate-left">
+
+                    <div class="certificate-icon">
+                        📄
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Technical Symposium
+                        </h4>
+
+                        <span>
+                            Uploaded by Student
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <span class="status verified">
+                        ✓ Verified
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+<!-- =========================================
+     MANAGEMENT GRID
+========================================= -->
+
+<section class="admin-grid">
+
+
+<!-- CLUB MANAGEMENT -->
+
+<div class="admin-card"
+     id="clubs">
+
+    <h2>
+        Club Management
+    </h2>
+
+    <p>
+        Manage college clubs, descriptions,
+        posters and club information.
+    </p>
+
+    <button
+        class="admin-button"
+        onclick="showAdminMessage()">
+        Manage Clubs
+    </button>
+
+
+    <div class="management-list">
+
+        <div class="management-item">
+
+            <strong>
+                Coding Club
+            </strong>
+
+            <span>
+                Active
+            </span>
+
+        </div>
+
+
+        <div class="management-item">
+
+            <strong>
+                Photography Club
+            </strong>
+
+            <span>
+                Active
+            </span>
+
+        </div>
+
+
+        <div class="management-item">
+
+            <strong>
+                Maths Club
+            </strong>
+
+            <span>
+                Active
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- EVENT MANAGEMENT -->
+
+<div class="admin-card"
+     id="events">
+
+    <h2>
+        Event Management
+    </h2>
+
+    <p>
+        Add events with date, time, venue,
+        description and poster.
+    </p>
+
+    <button
+        class="admin-button"
+        onclick="addDemoEvent()">
+        + Add New Event
+    </button>
+
+    <button
+        class="admin-button secondary"
+        onclick="showAdminMessage()">
+        View Events
+    </button>
+
+
+    <div class="management-list">
+
+        <div class="management-item">
+
+            <strong>
+                Cricket Tournament
+            </strong>
+
+            <span>
+                Upcoming
+            </span>
+
+        </div>
+
+
+        <div class="management-item">
+
+            <strong>
+                Dream Verse
+            </strong>
+
+            <span>
+                Upcoming
+            </span>
+
+        </div>
+
+
+        <div class="management-item">
+
+            <strong>
+                The Number Crunches
+            </strong>
+
+            <span>
+                Upcoming
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- REGISTRATIONS -->
+
+<div class="admin-card"
+     id="registrations">
+
+    <h2>
+        Registrations
+    </h2>
+
+    <p>
+        View students registered for each
+        event and club activity.
+    </p>
+
+    <button
+        class="admin-button"
+        onclick="showRegistrations()">
+        View Registrations
+    </button>
+
+</div>
+
+
+<!-- ANNOUNCEMENTS -->
+
+<div class="admin-card"
+     id="announcements">
+
+    <h2>
+        Announcements
+    </h2>
+
+    <p>
+        Publish important announcements
+        for students through the portal.
+    </p>
+
+    <button
+        class="admin-button"
+        onclick="addAnnouncement()">
+        + New Announcement
+    </button>
+
+</div>
+
+
+<!-- GALLERY -->
+
+<div class="admin-card"
+     id="gallery">
+
+    <h2>
+        Posters & Gallery
+    </h2>
+
+    <p>
+        Manage event posters and activity
+        gallery images.
+    </p>
+
+    <button
+        class="admin-button"
+        onclick="showAdminMessage()">
+        Manage Gallery
+    </button>
+
+</div>
+
+
+<!-- CERTIFICATE VERIFICATION -->
+
+<div class="admin-card">
+
+    <h2>
+        Certificate Verification
+    </h2>
+
+    <p>
+        Review certificates uploaded by students
+        and verify authentic college activity records.
+    </p>
+
+    <button
+        class="admin-button"
+        onclick="showStudentProfile()">
+        Review Student Certificates
+    </button>
+
+</div>
+
+
+</section>
+
+
+</main>
+
+</div>
+
+
+<!-- =========================================
+     CERTIFICATE VIEW MODAL
+========================================= -->
+
+<div class="modal"
+     id="certificateModal">
+
+    <div class="modal-box">
+
+        <button
+            class="close-modal"
+            onclick="closeCertificateModal()">
+            ✕
+        </button>
+
+        <h2>
+            Certificate Review
+        </h2>
+
+        <p>
+            This certificate was uploaded by the student
+            for faculty/admin verification.
+        </p>
+
+        <div class="data-item">
+
+            <strong>
+                Certificate Status
+            </strong>
+
+            <span>
+                Pending Verification
+            </span>
+
+        </div>
+
+        <br>
+
+        <button
+            class="admin-button"
+            onclick="closeCertificateModal()">
+            Close
+        </button>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+
+<script>
+
+/* =========================================
+   STUDENT SEARCH
+========================================= */
+
+function searchStudent() {
+
+    const input =
+        document.getElementById("studentSearch");
+
+    const result =
+        document.getElementById("studentResult");
+
+    const value =
+        input.value.trim().toLowerCase();
+
+
+    if (value === "") {
+
+        alert(
+            "Please enter a student name or register number."
+        );
+
+        result.classList.remove("show");
+
+        return;
+    }
+
+
+    /*
+       Demo student:
+       Sri Bharathi
+       23CSE001
+    */
+
+    if (
+        value.includes("sri") ||
+        value.includes("bharathi") ||
+        value.includes("23cse001")
+    ) {
+
+        result.classList.add("show");
+
+        result.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    } else {
+
+        result.classList.remove("show");
+
+        alert(
+            "Student not found in the demo student database."
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   SHOW STUDENT PROFILE
+========================================= */
+
+function showStudentProfile() {
+
+    const result =
+        document.getElementById("studentResult");
+
+    result.classList.add("show");
+
+    result.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+}
+
+
+/* =========================================
+   VERIFY CERTIFICATE
+========================================= */
+
+function verifyCertificate(
+    statusId,
+    button
+) {
+
+    const status =
+        document.getElementById(statusId);
+
+
+    status.textContent =
+        "✓ Verified";
+
+
+    status.classList.remove(
+        "pending"
+    );
+
+    status.classList.add(
+        "verified"
+    );
+
+
+    button.remove();
+
+
+    alert(
+        "Certificate verified successfully."
+    );
+
+}
+
+
+/* =========================================
+   CERTIFICATE MODAL
+========================================= */
+
+function openCertificateModal() {
+
+    document
+        .getElementById("certificateModal")
+        .classList.add("show");
+
+}
+
+
+function closeCertificateModal() {
+
+    document
+        .getElementById("certificateModal")
+        .classList.remove("show");
+
+}
+
+
+/* =========================================
+   EXISTING ADMIN FUNCTIONS
+========================================= */
+
+function showAdminMessage() {
+
+    alert(
+        "Management module is ready for integration."
+    );
+
+}
+
+
+function addDemoEvent() {
+
+    alert(
+        "New Event module opened."
+    );
+
+}
+
+
+function addAnnouncement() {
+
+    alert(
+        "New Announcement module opened."
+    );
+
+}
+
+
+function showRegistrations() {
+
+    alert(
+        "Registration management module opened."
+    );
+
+}
+
+</script>
+
+
+</body>
+</html>

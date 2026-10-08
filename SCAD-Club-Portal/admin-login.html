@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Login | SCAD Clubs</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        .admin-login-page {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: #f8f5ef;
+        }
+
+        .admin-visual {
+            background: #211d1e;
+            color: white;
+            padding: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .admin-visual h1 {
+            font-family: "Playfair Display", serif;
+            font-size: 58px;
+            line-height: 1.08;
+            margin: 20px 0;
+        }
+
+        .admin-visual p {
+            max-width: 500px;
+            color: #c9c0bd;
+        }
+
+        .admin-feature {
+            display: flex;
+            gap: 12px;
+            margin-top: 35px;
+            color: #d6b47c;
+            font-size: 13px;
+        }
+
+        .admin-form-area {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .admin-login-card {
+            width: 100%;
+            max-width: 430px;
+            background: white;
+            padding: 45px;
+            border: 1px solid #e5ddd3;
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(40,20,20,.08);
+        }
+
+        .admin-login-card h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 35px;
+        }
+
+        .admin-login-card > p {
+            color: #777176;
+            font-size: 14px;
+            margin: 7px 0 30px;
+        }
+
+        .admin-field {
+            margin-bottom: 20px;
+        }
+
+        .admin-field label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+
+        .admin-field input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ded6cb;
+            border-radius: 7px;
+            outline: none;
+        }
+
+        .admin-login-button {
+            width: 100%;
+            padding: 15px;
+            background: #641f2b;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .admin-login-button:hover {
+            background: #42141d;
+        }
+
+        .admin-login-links {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 13px;
+        }
+
+        .admin-login-links a {
+            color: #641f2b;
+            font-weight: 600;
+        }
+
+        .admin-demo {
+            margin-top: 25px;
+            background: #f5efe7;
+            padding: 12px;
+            border-radius: 7px;
+            font-size: 11px;
+            color: #777;
+        }
+
+        @media(max-width:800px) {
+
+            .admin-login-page {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-visual {
+                display: none;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="admin-login-page">
+
+    <div class="admin-visual">
+
+        <span class="eyebrow">SCAD ADMIN PORTAL</span>
+
+        <h1>
+            Manage every<br>
+            student activity<br>
+            in one place.
+        </h1>
+
+        <p>
+            Manage clubs, events, student participation,
+            registrations, announcements and activity
+            information through one central portal.
+        </p>
+
+        <div class="admin-feature">
+            ✓ Club Management
+        </div>
+
+        <div class="admin-feature">
+            ✓ Event & Registration Management
+        </div>
+
+        <div class="admin-feature">
+            ✓ Student Activity Management
+        </div>
+
+    </div>
+
+
+    <div class="admin-form-area">
+
+        <div class="admin-login-card">
+
+            <h2>Admin Login</h2>
+
+            <p>Sign in to manage the SCAD Club Portal.</p>
+
+            <form onsubmit="adminLogin(event)">
+
+                <div class="admin-field">
+
+                    <label>Admin Username</label>
+
+                    <input
+                        id="adminUsername"
+                        type="text"
+                        placeholder="Enter admin username"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="admin-field">
+
+                    <label>Password</label>
+
+                    <input
+                        id="adminPassword"
+                        type="password"
+                        placeholder="Enter password"
+                        required
+                    >
+
+                </div>
+
+
+                <button class="admin-login-button" type="submit">
+                    Login to Admin Portal →
+                </button>
+
+            </form>
+
+
+            <div class="admin-demo">
+                Demo Login: <b>admin</b> / <b>admin123</b>
+            </div>
+
+
+            <div class="admin-login-links">
+
+                <a href="student-login.html">Student Login</a>
+
+                &nbsp; • &nbsp;
+
+                <a href="index.html">Back to Website</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

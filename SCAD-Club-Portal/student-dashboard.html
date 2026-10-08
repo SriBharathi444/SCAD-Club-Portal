@@ -1,0 +1,1621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Portal | SCAD College</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* ==============================
+   STUDENT PORTAL
+================================ */
+
+body {
+    margin: 0;
+    background: #f5f1eb;
+    color: #252326;
+    font-family: Arial, sans-serif;
+}
+
+.portal {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ==============================
+   SIDEBAR
+================================ */
+
+.sidebar {
+    width: 245px;
+    background: #211d1e;
+    color: white;
+    padding: 25px 18px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    box-sizing: border-box;
+    z-index: 100;
+}
+
+.side-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    margin-bottom: 35px;
+}
+
+.side-brand img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.side-brand h3 {
+    margin: 0;
+    font-family: "Playfair Display", serif;
+    font-size: 18px;
+}
+
+.side-brand span {
+    display: block;
+    font-size: 9px;
+    color: #aaa;
+    margin-top: 3px;
+}
+
+.side-link {
+    display: block;
+    padding: 13px 15px;
+    margin: 4px 0;
+    color: #c6c0bd;
+    border-radius: 7px;
+    font-size: 13px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.side-link:hover,
+.side-link.active {
+    background: #641f2b;
+    color: white;
+}
+
+.logout {
+    position: absolute;
+    bottom: 25px;
+    left: 18px;
+    right: 18px;
+}
+
+/* ==============================
+   MAIN
+================================ */
+
+.main {
+    margin-left: 245px;
+    width: calc(100% - 245px);
+    padding: 35px;
+    box-sizing: border-box;
+}
+
+/* ==============================
+   TOP BAR
+================================ */
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.topbar h1 {
+    font-family: "Playfair Display", serif;
+    font-size: 32px;
+    margin: 5px 0 0;
+}
+
+.eyebrow {
+    color: #b18a50;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    padding: 9px 14px;
+    border-radius: 8px;
+    border: 1px solid #e2dbd2;
+}
+
+.profile-circle {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #641f2b;
+    color: white;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+}
+.profile-circle {
+    overflow: hidden;
+}
+
+.profile-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* ==============================
+   WELCOME
+================================ */
+
+.welcome {
+    background: #641f2b;
+    color: white;
+    padding: 35px;
+    border-radius: 14px;
+    margin-bottom: 25px;
+}
+
+.welcome span {
+    color: #d9b77e;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.welcome h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 38px;
+    margin: 7px 0;
+}
+
+.welcome p {
+    color: #eadbd8;
+    margin-bottom: 0;
+}
+
+/* ==============================
+   STATS
+================================ */
+
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 35px;
+}
+
+.dashboard-stat {
+    background: white;
+    padding: 22px;
+    border: 1px solid #e2dbd2;
+    border-radius: 10px;
+}
+
+.dashboard-stat strong {
+    display: block;
+    font-family: "Playfair Display", serif;
+    font-size: 30px;
+    color: #641f2b;
+}
+
+.dashboard-stat span {
+    color: #777;
+    font-size: 12px;
+}
+
+/* ==============================
+   COMMON SECTION
+================================ */
+
+.portal-section {
+    margin-bottom: 45px;
+}
+
+.content-title {
+    font-family: "Playfair Display", serif;
+    font-size: 28px;
+    margin-bottom: 18px;
+    color: #42141d;
+}
+
+.section-subtitle {
+    color: #777;
+    font-size: 13px;
+    margin-top: -10px;
+    margin-bottom: 20px;
+}
+
+/* ==============================
+   STUDENT PROFILE
+================================ */
+
+.profile-card {
+    background: white;
+    border: 1px solid #e2dbd2;
+    border-radius: 15px;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 30px;
+}
+
+.profile-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: #641f2b;
+    border: 5px solid #b18a50;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+    font-weight: bold;
+}
+
+.profile-details h3 {
+    font-family: "Playfair Display", serif;
+    color: #42141d;
+    font-size: 27px;
+    margin: 0 0 5px;
+}
+
+.profile-details .course {
+    color: #641f2b;
+    font-weight: bold;
+    margin-bottom: 22px;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.detail-box {
+    background: #f8f5ef;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.detail-box span {
+    display: block;
+    color: #888;
+    font-size: 11px;
+    margin-bottom: 5px;
+}
+
+.detail-box strong {
+    color: #333;
+    font-size: 13px;
+}
+
+/* ==============================
+   CLUBS
+================================ */
+
+.club-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.club-card {
+    background: white;
+    padding: 22px;
+    border-radius: 12px;
+    border: 1px solid #e2dbd2;
+    transition: 0.3s;
+}
+
+.club-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+.club-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    background: #641f2b;
+    color: white;
+    display: grid;
+    place-items: center;
+    margin-bottom: 12px;
+}
+
+.club-card h3 {
+    font-family: "Playfair Display", serif;
+    margin: 0 0 6px;
+    color: #42141d;
+}
+
+.club-card p {
+    color: #777;
+    font-size: 12px;
+    margin: 0;
+}
+
+/* ==============================
+   EVENTS
+================================ */
+
+.portal-events {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.portal-event {
+    background: white;
+    border: 1px solid #e2dbd2;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.portal-event img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+}
+
+.portal-event div {
+    padding: 18px;
+}
+
+.portal-event h3 {
+    font-family: "Playfair Display", serif;
+    margin-bottom: 5px;
+    color: #42141d;
+}
+
+.portal-event p {
+    font-size: 12px;
+    color: #777;
+}
+
+.register-btn {
+    display: inline-block;
+    margin-top: 12px;
+    background: #641f2b;
+    color: white;
+    padding: 9px 14px;
+    border-radius: 6px;
+    font-size: 11px;
+    border: none;
+    cursor: pointer;
+}
+
+.register-btn:hover {
+    background: #42141d;
+}
+
+/* ==============================
+   ACHIEVEMENTS
+================================ */
+
+.achievement-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.achievement-card {
+    background: white;
+    padding: 22px;
+    border-radius: 12px;
+    border: 1px solid #e2dbd2;
+}
+
+.achievement-icon {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.achievement-card h3 {
+    color: #42141d;
+    font-family: "Playfair Display", serif;
+    margin: 5px 0;
+}
+
+.achievement-card p {
+    color: #777;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* ==============================
+   CERTIFICATES
+================================ */
+
+.certificate-container {
+    background: white;
+    padding: 25px;
+    border-radius: 14px;
+    border: 1px solid #e2dbd2;
+}
+
+.upload-area {
+    border: 2px dashed #cbbba5;
+    padding: 25px;
+    text-align: center;
+    border-radius: 10px;
+    background: #faf7f1;
+    margin-bottom: 25px;
+}
+
+.upload-area h3 {
+    color: #42141d;
+    margin-bottom: 7px;
+}
+
+.upload-area p {
+    color: #777;
+    font-size: 12px;
+}
+
+.upload-area input {
+    margin-top: 10px;
+}
+
+.certificate-list {
+    display: grid;
+    gap: 12px;
+}
+
+.certificate-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8f5ef;
+    padding: 16px;
+    border-radius: 9px;
+}
+
+.certificate-info {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.certificate-icon {
+    width: 40px;
+    height: 40px;
+    background: #641f2b;
+    color: white;
+    border-radius: 7px;
+    display: grid;
+    place-items: center;
+}
+
+.certificate-info h4 {
+    margin: 0 0 4px;
+    color: #42141d;
+}
+
+.certificate-info span {
+    color: #777;
+    font-size: 11px;
+}
+
+.status {
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.status.pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status.verified {
+    background: #e5f4e9;
+    color: #26703a;
+}
+
+/* ==============================
+   REGISTRATIONS
+================================ */
+
+.registration-box {
+    background: white;
+    border: 1px solid #e2dbd2;
+    border-radius: 14px;
+    padding: 25px;
+}
+
+.registration-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #f8f5ef;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.registration-item:last-child {
+    margin-bottom: 0;
+}
+
+.registration-item strong {
+    color: #42141d;
+}
+
+.registration-item span {
+    font-size: 11px;
+    color: #777;
+}
+
+/* ==============================
+   BUTTON
+================================ */
+
+.view-btn {
+    border: none;
+    background: #641f2b;
+    color: white;
+    padding: 9px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 11px;
+}
+
+.view-btn:hover {
+    background: #42141d;
+}
+
+/* ==============================
+   RESPONSIVE
+================================ */
+
+@media(max-width: 1100px) {
+
+    .dashboard-stats {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .portal-events {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .club-grid,
+    .achievement-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media(max-width: 900px) {
+
+    .sidebar {
+        width: 75px;
+    }
+
+    .side-brand div,
+    .side-link span {
+        display: none;
+    }
+
+    .main {
+        margin-left: 75px;
+        width: calc(100% - 75px);
+    }
+
+    .profile-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .profile-photo {
+        margin: auto;
+    }
+}
+
+@media(max-width: 650px) {
+
+    .main {
+        padding: 20px;
+    }
+
+    .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .dashboard-stats,
+    .portal-events,
+    .club-grid,
+    .achievement-grid,
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .welcome h2 {
+        font-size: 30px;
+    }
+
+    .certificate-item,
+    .registration-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="portal">
+
+<!-- ==============================
+     SIDEBAR
+================================ -->
+
+<aside class="sidebar">
+
+    <div class="side-brand">
+
+        <img src="images/scad-logo.jpeg" alt="SCAD">
+
+        <div>
+            <h3>SCAD Clubs</h3>
+            <span>STUDENT PORTAL</span>
+        </div>
+
+    </div>
+
+
+    <a href="#home" class="side-link active">
+        🏠 <span>Dashboard</span>
+    </a>
+
+    <a href="#profile" class="side-link">
+        👤 <span>My Profile</span>
+    </a>
+
+    <a href="#clubs" class="side-link">
+        🎯 <span>My Clubs</span>
+    </a>
+
+    <a href="#events" class="side-link">
+        📅 <span>Events</span>
+    </a>
+
+    <a href="#achievements" class="side-link">
+        🏆 <span>Achievements</span>
+    </a>
+
+    <a href="#certificates" class="side-link">
+        📄 <span>Certificates</span>
+    </a>
+
+    <a href="#registrations" class="side-link">
+        📝 <span>My Registrations</span>
+    </a>
+
+    <a href="index.html" class="side-link logout">
+        🚪 <span>Logout</span>
+    </a>
+
+</aside>
+
+
+<!-- ==============================
+     MAIN
+================================ -->
+
+<main class="main" id="home">
+
+
+<!-- TOP BAR -->
+
+<div class="topbar">
+
+    <div>
+
+        <span class="eyebrow">
+            STUDENT PORTAL
+        </span>
+
+        <h1>Dashboard</h1>
+
+    </div>
+
+
+    <div class="profile">
+
+        <div class="profile-circle">
+<img src="images/student-spotlight.jpeg" alt="Sri Bharathi">
+        </div>
+
+        <strong>Sri Bharathi</strong>
+
+    </div>
+
+</div>
+
+
+<!-- ==============================
+     WELCOME
+================================ -->
+
+<section class="welcome">
+
+    <span>WELCOME BACK</span>
+
+    <h2>Hello, Sri Bharathi 👋</h2>
+
+    <p>
+        Manage your college activities, clubs, events,
+        achievements and certificates from your student profile.
+    </p>
+
+</section>
+
+
+<!-- ==============================
+     STATS
+================================ -->
+
+<section class="dashboard-stats">
+
+    <div class="dashboard-stat">
+
+        <strong>24</strong>
+
+        <span>
+            Available Clubs
+        </span>
+
+    </div>
+
+
+    <div class="dashboard-stat">
+
+        <strong>3</strong>
+
+        <span>
+            Upcoming Events
+        </span>
+
+    </div>
+
+
+    <div class="dashboard-stat">
+
+        <strong>2</strong>
+
+        <span>
+            My Clubs
+        </span>
+
+    </div>
+
+
+    <div class="dashboard-stat">
+
+        <strong id="registrationCount">
+            0
+        </strong>
+
+        <span>
+            My Registrations
+        </span>
+
+    </div>
+
+</section>
+
+
+<!-- ==============================
+     STUDENT PROFILE
+================================ -->
+
+<section class="portal-section" id="profile">
+
+    <h2 class="content-title">
+        My Student Profile
+    </h2>
+
+    <p class="section-subtitle">
+        Your academic and co-curricular information maintained through the college portal.
+    </p>
+
+
+    <div class="profile-card">
+
+        <div>
+
+            <div class="profile-photo">
+                SB
+            </div>
+
+        </div>
+
+
+        <div class="profile-details">
+
+            <h3>
+                Sri Bharathi
+            </h3>
+
+            <div class="course">
+                B.E. Computer Science and Engineering
+            </div>
+
+
+            <div class="details-grid">
+
+                <div class="detail-box">
+
+                    <span>Register Number</span>
+
+                    <strong>
+                        23CSE001
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <span>Department</span>
+
+                    <strong>
+                        Computer Science & Engineering
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <span>Year</span>
+
+                    <strong>
+                        II Year
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <span>Section</span>
+
+                    <strong>
+                        C
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <span>Email</span>
+
+                    <strong>
+                        student@scad.edu.in
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <span>College</span>
+
+                    <strong>
+                        SCAD College of Engineering
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==============================
+     MY CLUBS
+================================ -->
+
+<section class="portal-section" id="clubs">
+
+    <h2 class="content-title">
+        My Clubs
+    </h2>
+
+    <p class="section-subtitle">
+        Clubs currently joined by the student.
+    </p>
+
+
+    <div class="club-grid">
+
+
+        <div class="club-card">
+
+            <div class="club-icon">
+                💻
+            </div>
+
+            <h3>
+                App Development Club
+            </h3>
+
+            <p>
+                Technical activities, application development
+                and project-based learning.
+            </p>
+
+        </div>
+
+
+        <div class="club-card">
+
+            <div class="club-icon">
+                💡
+            </div>
+
+            <h3>
+                Coding Club
+            </h3>
+
+            <p>
+                Coding practice, technical challenges
+                and programming activities.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- ==============================
+     EVENTS
+================================ -->
+
+<section class="portal-section" id="events">
+
+    <h2 class="content-title">
+        Upcoming Events
+    </h2>
+
+    <p class="section-subtitle">
+        Explore upcoming college club activities and register to participate.
+    </p>
+
+
+    <section class="portal-events">
+
+
+        <article class="portal-event">
+
+            <img
+                src="images/cricket.jpeg"
+                alt="Cricket"
+            >
+
+            <div>
+
+                <h3>
+                    Cricket Tournament
+                </h3>
+
+                <p>
+                    Sports & Fitness Club
+                </p>
+
+                <p>
+                    📅 College Sports Activity
+                </p>
+
+                <button
+                    class="register-btn"
+                    onclick="registerEvent('Cricket Tournament')"
+                >
+                    Register Now
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <article class="portal-event">
+
+            <img
+                src="images/dream-verse.jpeg"
+                alt="Dream Verse"
+            >
+
+            <div>
+
+                <h3>
+                    Dream Verse
+                </h3>
+
+                <p>
+                    Creative Club
+                </p>
+
+                <p>
+                    📅 Student Creative Activity
+                </p>
+
+                <button
+                    class="register-btn"
+                    onclick="registerEvent('Dream Verse')"
+                >
+                    Register Now
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <article class="portal-event">
+
+            <img
+                src="images/maths.jpeg"
+                alt="Maths"
+            >
+
+            <div>
+
+                <h3>
+                    The Number Crunches
+                </h3>
+
+                <p>
+                    Maths Club
+                </p>
+
+                <p>
+                    📅 Mathematics Activity
+                </p>
+
+                <button
+                    class="register-btn"
+                    onclick="registerEvent('The Number Crunches')"
+                >
+                    Register Now
+                </button>
+
+            </div>
+
+        </article>
+
+
+    </section>
+
+</section>
+
+
+<!-- ==============================
+     ACHIEVEMENTS
+================================ -->
+
+<section class="portal-section" id="achievements">
+
+    <h2 class="content-title">
+        My Achievements
+    </h2>
+
+    <p class="section-subtitle">
+        Achievements recorded or verified by the college.
+    </p>
+
+
+    <div class="achievement-grid">
+
+
+        <div class="achievement-card">
+
+            <div class="achievement-icon">
+                🏆
+            </div>
+
+            <h3>
+                Technical Event Participation
+            </h3>
+
+            <p>
+                Participated in a college-level technical activity
+                conducted by the CSE department.
+            </p>
+
+        </div>
+
+
+        <div class="achievement-card">
+
+            <div class="achievement-icon">
+                ⭐
+            </div>
+
+            <h3>
+                Club Activity
+            </h3>
+
+            <p>
+                Actively participated in App Development Club
+                activities and technical discussions.
+            </p>
+
+        </div>
+
+
+        <div class="achievement-card">
+
+            <div class="achievement-icon">
+                🎯
+            </div>
+
+            <h3>
+                Student Contribution
+            </h3>
+
+            <p>
+                Contributed to student activities and
+                college project initiatives.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- ==============================
+     CERTIFICATES
+================================ -->
+
+<section class="portal-section" id="certificates">
+
+    <h2 class="content-title">
+        Certificates & Documents
+    </h2>
+
+    <p class="section-subtitle">
+        Upload certificates earned outside the college. Faculty/Admin can review and verify them.
+    </p>
+
+
+    <div class="certificate-container">
+
+
+        <!-- UPLOAD -->
+
+        <div class="upload-area">
+
+            <h3>
+                Upload Certificate
+            </h3>
+
+            <p>
+                Add your participation, workshop, internship,
+                competition or achievement certificate.
+            </p>
+
+            <input
+                type="file"
+                id="certificateUpload"
+                accept=".pdf,.jpg,.jpeg,.png"
+            >
+
+            <br>
+
+            <button
+                class="view-btn"
+                style="margin-top:12px;"
+                onclick="uploadCertificate()"
+            >
+                Upload Certificate
+            </button>
+
+        </div>
+
+
+        <!-- CERTIFICATE LIST -->
+
+        <div class="certificate-list" id="certificateList">
+
+
+            <div class="certificate-item">
+
+                <div class="certificate-info">
+
+                    <div class="certificate-icon">
+                        📄
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Cloud Computing Workshop
+                        </h4>
+
+                        <span>
+                            Uploaded by Student
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <span class="status pending">
+                    Pending Verification
+                </span>
+
+            </div>
+
+
+            <div class="certificate-item">
+
+                <div class="certificate-info">
+
+                    <div class="certificate-icon">
+                        📄
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Technical Symposium
+                        </h4>
+
+                        <span>
+                            Verified by Faculty
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <span class="status verified">
+                    ✓ Verified
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==============================
+     REGISTRATIONS
+================================ -->
+
+<section class="portal-section" id="registrations">
+
+    <h2 class="content-title">
+        My Registrations
+    </h2>
+
+    <p class="section-subtitle">
+        Events for which you have registered.
+    </p>
+
+
+    <div class="registration-box" id="registrationList">
+
+        <div class="registration-item">
+
+            <div>
+
+                <strong>
+                    No registrations yet
+                </strong>
+
+                <br>
+
+                <span>
+                    Register for an event to see it here.
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+</div>
+
+
+<script src="script.js"></script>
+
+
+<script>
+
+/* =================================
+   CERTIFICATE UPLOAD
+================================= */
+
+function uploadCertificate() {
+
+    const fileInput =
+        document.getElementById("certificateUpload");
+
+    const file =
+        fileInput.files[0];
+
+    if (!file) {
+
+        alert("Please select a certificate first.");
+
+        return;
+    }
+
+
+    const list =
+        document.getElementById("certificateList");
+
+
+    const item =
+        document.createElement("div");
+
+    item.className =
+        "certificate-item";
+
+
+    item.innerHTML = `
+
+        <div class="certificate-info">
+
+            <div class="certificate-icon">
+                📄
+            </div>
+
+            <div>
+
+                <h4>
+                    ${file.name}
+                </h4>
+
+                <span>
+                    Uploaded by Student
+                </span>
+
+            </div>
+
+        </div>
+
+        <span class="status pending">
+            Pending Verification
+        </span>
+
+    `;
+
+
+    list.prepend(item);
+
+
+    fileInput.value = "";
+
+
+    alert(
+        "Certificate uploaded successfully. Status: Pending Verification."
+    );
+
+}
+
+
+/* =================================
+   EVENT REGISTRATION
+================================= */
+
+function registerEvent(eventName) {
+
+    let registrations =
+        JSON.parse(
+            localStorage.getItem("studentRegistrations")
+        ) || [];
+
+
+    if (!registrations.includes(eventName)) {
+
+        registrations.push(eventName);
+
+        localStorage.setItem(
+            "studentRegistrations",
+            JSON.stringify(registrations)
+        );
+
+        alert(
+            "Successfully registered for " + eventName
+        );
+
+    } else {
+
+        alert(
+            "You have already registered for " + eventName
+        );
+
+    }
+
+
+    updateRegistrationCount();
+
+    displayRegistrations();
+
+}
+
+
+/* =================================
+   UPDATE REGISTRATION COUNT
+================================= */
+
+function updateRegistrationCount() {
+
+    const registrations =
+        JSON.parse(
+            localStorage.getItem("studentRegistrations")
+        ) || [];
+
+
+    const count =
+        document.getElementById("registrationCount");
+
+
+    if (count) {
+
+        count.textContent =
+            registrations.length;
+
+    }
+
+}
+
+
+/* =================================
+   DISPLAY REGISTRATIONS
+================================= */
+
+function displayRegistrations() {
+
+    const registrations =
+        JSON.parse(
+            localStorage.getItem("studentRegistrations")
+        ) || [];
+
+
+    const list =
+        document.getElementById("registrationList");
+
+
+    if (!list) return;
+
+
+    if (registrations.length === 0) {
+
+        list.innerHTML = `
+
+            <div class="registration-item">
+
+                <div>
+
+                    <strong>
+                        No registrations yet
+                    </strong>
+
+                    <br>
+
+                    <span>
+                        Register for an event to see it here.
+                    </span>
+
+                </div>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    list.innerHTML = "";
+
+
+    registrations.forEach(function(eventName) {
+
+        const item =
+            document.createElement("div");
+
+        item.className =
+            "registration-item";
+
+
+        item.innerHTML = `
+
+            <div>
+
+                <strong>
+                    ${eventName}
+                </strong>
+
+                <br>
+
+                <span>
+                    Registration confirmed
+                </span>
+
+            </div>
+
+            <span class="status verified">
+                ✓ Registered
+            </span>
+
+        `;
+
+
+        list.appendChild(item);
+
+    });
+
+}
+
+
+/* =================================
+   LOAD DASHBOARD
+================================= */
+
+window.addEventListener(
+    "load",
+    function() {
+
+        updateRegistrationCount();
+
+        displayRegistrations();
+
+    }
+);
+
+</script>
+
+</body>
+</html>
